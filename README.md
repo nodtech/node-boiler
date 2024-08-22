@@ -80,8 +80,8 @@ Before you start, make sure you have the following installed:
 1. **Clone the Repository**
 
    ```bash
-   git clone git@github.com:GKMIT/universal-consent-manager.git
-   cd universal-consent-manager
+   git clone git@github.com:nodtech/node-boiler.git
+   cd node-boiler
 
 2. **Start the application with docker**
 

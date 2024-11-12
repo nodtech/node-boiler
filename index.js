@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const routes = require('./routes/index.route');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger');
+const { getRedisTime } = require('./helpers/redis.helpers');
 const { StatusCodes } = require('http-status-codes');
 
 const app = express();
@@ -20,12 +21,14 @@ app.get('/health', async (_req, res) => {
   try {
     //  get current time from DB to check connectivity
     const [results] = await sequelize.query('SELECT NOW() as current_time');
+    const redisTime = await getRedisTime();
     const currentTime = results[0].current_time;
 
     res.send({
       message: 'Application running successfully!',
       uptime: process.uptime(),
       database: currentTime,
+      redis: redisTime,
     });
   } catch (error) {
     console.log(`Error in health check API :: ${error}`);

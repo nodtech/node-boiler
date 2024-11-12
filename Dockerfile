@@ -5,7 +5,7 @@ FROM node:20
 WORKDIR /app
 
 # Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
+COPY package.json ./
 
 # Install the dependencies
 RUN npm install
@@ -15,6 +15,7 @@ COPY . .
 
 # Copy the initialise.sh script to the working directory and make it executable
 COPY initialise.sh /app/initialise.sh
+
 RUN chmod +x /app/initialise.sh
 
 # Expose port 300
